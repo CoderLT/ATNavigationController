@@ -7,8 +7,6 @@
 //
 
 #import "ATNavigationController.h"
-#import <QuartzCore/QuartzCore.h>
-#import <math.h>
 
 #define enableDrag (self.viewControllers.count > 1 && !self.disableDragBack)
 
