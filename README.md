@@ -1,16 +1,16 @@
 ## ATNavigationController
 
- *    
+ * 导航栏控制器  向右侧滑 返回前一个ViewController的功能
 
-## ATNavigationController
+## 怎么使用ATNavigationController
 
-* cocoapods`pod 'ATNavigationController'`
+* cocoapods导入：`pod 'ATNavigationController'`
 
-* 
-    * `ATNavigationController/ATNavigationController`
-    * `#import "ATNavigationController.h"`
-    * ATNavigationController
+* 手动导入：
+    * 将`ATNavigationController/ATNavigationController`文件夹中的所有源代码拽入项目中
+    * 导入头文件：`#import "ATNavigationController.h"`
+    * 将您自定义的的导航栏控制器继承自ATNavigationController
     
-## 
+## 结束
 
-* Issues
+* 在使用过程中如果遇到任何问题，请Issues我，谢谢。
