@@ -2,7 +2,7 @@
 
  * 导航栏控制器  向右侧滑 返回前一个ViewController的功能
  
-![演示Gif](https://github.com/CoderLT/ATNavigationController/tree/master/ATNavigationControllerDemo/ATNavigationController.gif)
+![演示Gif](https://raw.githubusercontent.com/CoderLT/ATNavigationController/master/ATNavigationControllerDemo/ATNavigationController.gif)
 
 ## 怎么使用ATNavigationController
 
