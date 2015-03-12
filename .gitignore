@@ -23,3 +23,9 @@ DerivedData
 *.hmap
 *.ipa
 *.xcbkptlist
+
+*.xcuserstate
+
+ATNavigationControllerDemo/ATNavigationControllerDemo.xcodeproj/project.xcworkspace/xcuserdata/xiao6.xcuserdatad/UserInterfaceState.xcuserstate
+
+ATNavigationControllerDemo/ATNavigationControllerDemo.xcodeproj/project.xcworkspace/xcuserdata/xiao6.xcuserdatad/UserInterfaceState.xcuserstate
