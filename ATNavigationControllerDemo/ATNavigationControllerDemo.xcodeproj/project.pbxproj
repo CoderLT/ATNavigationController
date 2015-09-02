@@ -439,6 +439,7 @@
 				A09B22521AB0893B00E3E4A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A09B22531AB0893B00E3E4A1 /* Build configuration list for PBXNativeTarget "ATNavigationControllerDemoTests" */ = {
 			isa = XCConfigurationList;
@@ -447,6 +448,7 @@
 				A09B22551AB0893B00E3E4A1 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

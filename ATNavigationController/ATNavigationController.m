@@ -53,7 +53,6 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     if (_backgroundView == nil) {
         _backgroundView = [[UIView alloc]initWithFrame:self.view.bounds];
         _backgroundView.backgroundColor = [UIColor blackColor];
-        [self.view.superview insertSubview:_backgroundView belowSubview:self.view];
 
         _lastScreenShotView = [[UIImageView alloc] initWithFrame:_backgroundView.bounds];
         _lastScreenShotView.backgroundColor = [UIColor whiteColor];
@@ -62,6 +61,9 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
         _lastScreenBlackMask = [[UIView alloc] initWithFrame:_backgroundView.bounds];
         _lastScreenBlackMask.backgroundColor = [UIColor blackColor];
         [_backgroundView addSubview:_lastScreenBlackMask];
+    }
+    if (_backgroundView.superview == nil) {
+        [self.view.superview insertSubview:_backgroundView belowSubview:self.view];
     }
     return _backgroundView;
 }
