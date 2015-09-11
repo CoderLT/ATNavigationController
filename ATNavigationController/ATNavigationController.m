@@ -90,8 +90,12 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
  *  当前导航栏界面截屏
  */
 - (UIImage *)capture {
-    UIGraphicsBeginImageContextWithOptions(self.view.bounds.size, self.view.opaque, 0.0);
-    [self.view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    UIView *view = self.view;
+    if (self.tabBarController) {
+        view = self.tabBarController.view;
+    }
+    UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
+    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;
