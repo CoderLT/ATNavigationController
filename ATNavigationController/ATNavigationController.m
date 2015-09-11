@@ -219,10 +219,12 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
                          self.view.frame = (CGRect){ {0, self.view.frame.origin.y}, self.view.frame.size };
                          self.movingState = ATNavMovingStateStanby;
 
-                         // 移动键盘
-                         if ([[[UIApplication sharedApplication] windows] count] > 1) {
-                             [((UIWindow *)[[[UIApplication sharedApplication] windows] objectAtIndex:1]) setTransform:CGAffineTransformIdentity];
-                         }
+                         dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(0.3 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+                             // 移动键盘
+                             if ([[[UIApplication sharedApplication] windows] count] > 1) {
+                                 [((UIWindow *)[[[UIApplication sharedApplication] windows] objectAtIndex:1]) setTransform:CGAffineTransformIdentity];
+                             }
+                         });
                      }];
 }
 
