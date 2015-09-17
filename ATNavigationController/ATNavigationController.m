@@ -164,10 +164,19 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     // 设置上一个截屏的缩放比例
     CGFloat scale = x / ATNavViewW * 0.05 + 0.95;
     self.lastScreenShotView.transform = CGAffineTransformMakeScale(scale, scale);
-
+    
     // 移动键盘
-    if ([[[UIApplication sharedApplication] windows] count] > 1) {
-        [((UIWindow *)[[[UIApplication sharedApplication] windows] objectAtIndex:1]) setTransform:CGAffineTransformMakeTranslation(x, 0)];
+    if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)) {
+        [[[UIApplication sharedApplication] windows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+            if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]) {
+                [(UIWindow *)obj setTransform:CGAffineTransformMakeTranslation(x, 0)];
+            }
+        }];
+    }
+    else {
+        if ([[[UIApplication sharedApplication] windows] count] > 1) {
+            [((UIWindow *)[[[UIApplication sharedApplication] windows] objectAtIndex:1]) setTransform:CGAffineTransformMakeTranslation(x, 0)];
+        }
     }
 }
 
@@ -225,8 +234,17 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
                          
                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((pop ? 0.3f : 0.0f) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
                              // 移动键盘
-                             if ([[[UIApplication sharedApplication] windows] count] > 1) {
-                                 [((UIWindow *)[[[UIApplication sharedApplication] windows] objectAtIndex:1]) setTransform:CGAffineTransformIdentity];
+                             if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)) {
+                                 [[[UIApplication sharedApplication] windows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
+                                     if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]) {
+                                         [(UIWindow *)obj setTransform:CGAffineTransformIdentity];
+                                     }
+                                 }];
+                             }
+                             else {
+                                 if ([[[UIApplication sharedApplication] windows] count] > 1) {
+                                     [((UIWindow *)[[[UIApplication sharedApplication] windows] objectAtIndex:1]) setTransform:CGAffineTransformIdentity];
+                                 }
                              }
                          });
                      }];
