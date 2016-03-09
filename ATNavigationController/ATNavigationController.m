@@ -255,6 +255,10 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
  *  不响应的手势则传递下去
  */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
+    // 手势落点在屏幕右边1/3, 不响应手势
+    if ([touch locationInView:nil].x >= [UIScreen mainScreen].bounds.size.width * 2 / 3) {
+        return NO;
+    }
     return enableDrag;
 }
 /**
