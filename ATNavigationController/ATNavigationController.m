@@ -257,11 +257,30 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldReceiveTouch:(UITouch *)touch {
     return enableDrag;
 }
-///**
-// *  优先响应其他手势
-// */
-//- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRequireFailureOfGestureRecognizer:(UIGestureRecognizer *)otherGestureRecognizer {
-//    return YES;
-//}
+/**
+ *  适配cell左滑删除
+ */
+- (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(nonnull UIGestureRecognizer *)otherGestureRecognizer {
+    UIPanGestureRecognizer *ges = (UIPanGestureRecognizer *)otherGestureRecognizer;
+    // 手势不是 UIPanGestureRecognizer
+    if (![ges isKindOfClass:[UIPanGestureRecognizer class]]) {
+        return NO;
+    }
+    // 手势落点在屏幕左边1/3
+    if ([ges locationInView:nil].x <= [UIScreen mainScreen].bounds.size.width / 3) {
+        return NO;
+    }
+    // 手势是 上下滑动
+    CGPoint offset = [ges translationInView:nil];
+    if (fabs(offset.x) <= fabs(offset.y)) {
+        return NO;
+    }
+    // 手势是 右滑
+    if (offset.x >= 0) {
+        return NO;
+    }
+    // 应该是左滑了
+    return YES;
+}
 
 @end
