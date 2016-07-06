@@ -53,11 +53,11 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     if (_backgroundView == nil) {
         _backgroundView = [[UIView alloc]initWithFrame:self.view.bounds];
         _backgroundView.backgroundColor = [UIColor blackColor];
-
+        
         _lastScreenShotView = [[UIImageView alloc] initWithFrame:_backgroundView.bounds];
         _lastScreenShotView.backgroundColor = [UIColor whiteColor];
         [_backgroundView addSubview:_lastScreenShotView];
-
+        
         _lastScreenBlackMask = [[UIView alloc] initWithFrame:_backgroundView.bounds];
         _lastScreenBlackMask.backgroundColor = [UIColor blackColor];
         [_backgroundView addSubview:_lastScreenBlackMask];
@@ -141,7 +141,7 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
         [self.screenShotsDict setObject:[self capture] forKey:[self pointer:self.topViewController]];
     }
     [super setViewControllers:viewControllers animated:animated];
-
+    
     NSMutableDictionary *newDic = [NSMutableDictionary dictionary];
     for (UIViewController *vc in viewControllers) {
         id obj = [self.screenShotsDict objectForKey:[self pointer:vc]];
@@ -183,7 +183,7 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
 - (void)paningGestureReceive:(UIPanGestureRecognizer *)recoginzer
 {
     if (!enableDrag) return;
-
+    
     if (UIGestureRecognizerStateBegan == recoginzer.state) {
         if (self.movingState == ATNavMovingStateStanby) {
             self.movingState = ATNavMovingStateDragBegan;
@@ -215,8 +215,23 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     BOOL pop = ( targetX > ATMinX );
     // 设置动画初始化速率为当前瘦子离开的速率
     CGFloat initialSpringVelocity = fabs(velocityX) / (pop ? ATNavViewW - translationX : translationX);
-
+    
     self.movingState = ATNavMovingStateDecelerating;
+    CGRect frame = (CGRect){ {0, self.view.frame.origin.y}, self.view.frame.size };
+    BOOL adjustTabbarFrame = NO;
+    if (self.tabBarController) {
+        if (CGRectEqualToRect(frame, self.tabBarController.view.frame)) {
+            adjustTabbarFrame = YES;
+        }
+        UIView *superView = self.view;
+        while (superView != self.tabBarController.view && superView) {
+            if (!CGRectEqualToRect(frame, self.tabBarController.view.frame)) {
+                adjustTabbarFrame = NO;
+                break;
+            }
+            superView = superView.superview;
+        }
+    }
     [UIView animateWithDuration:ATAnimationDuration
                           delay:0
          usingSpringWithDamping:1
@@ -229,7 +244,14 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
                          if ( pop ) {
                              [self popViewControllerAnimated:NO];
                          }
-                         self.view.frame = (CGRect){ {0, self.view.frame.origin.y}, self.view.frame.size };
+                         self.view.frame = frame;
+                         if (adjustTabbarFrame) {
+                             UIView *superView = self.view;
+                             while (superView != self.tabBarController.view && superView) {
+                                 superView.frame = frame;
+                                 superView = superView.superview;
+                             }
+                         }
                          self.movingState = ATNavMovingStateStanby;
                          
                          dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)((pop ? 0.3f : 0.0f) * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
