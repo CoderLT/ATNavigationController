@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6751" systemVersion="14C1510" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="10117" systemVersion="15G31" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6736"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="10085"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="RandomColorViewController">
@@ -15,26 +15,103 @@
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kd3-pR-NsZ">
-                    <rect key="frame" x="250" y="270" width="100" height="60"/>
+                    <rect key="frame" x="230" y="270" width="139" height="60"/>
                     <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="100" id="mUw-KV-aQa"/>
                         <constraint firstAttribute="height" constant="60" id="pzU-xr-TrP"/>
                     </constraints>
                     <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                    <state key="normal" title="popToVC">
+                        <color key="titleColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="mUw-KV-aQa"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="popToVCr:" destination="-1" eventType="touchUpInside" id="uQ3-lp-lpq"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wkn-4b-xkq">
+                    <rect key="frame" x="261" y="170" width="77" height="60"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="GHi-Sg-CPd"/>
+                        <constraint firstAttribute="height" constant="60" id="bPg-Eo-Bbb"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
                     <state key="normal" title="push">
                         <color key="titleColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                     </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="GHi-Sg-CPd"/>
+                        </mask>
+                    </variation>
                     <connections>
-                        <action selector="push:" destination="-1" eventType="touchUpInside" id="ANX-oy-MdQ"/>
+                        <action selector="push:" destination="-1" eventType="touchUpInside" id="NHv-VX-ok1"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CUn-tJ-7Nx">
+                    <rect key="frame" x="193" y="370" width="213" height="60"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="100" id="X3i-wv-zbe"/>
+                        <constraint firstAttribute="height" constant="60" id="ucC-dG-eZp"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                    <state key="normal" title="popToRootVC">
+                        <color key="titleColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="X3i-wv-zbe"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="popToRootVC:" destination="-1" eventType="touchUpInside" id="Oxe-b5-yt5"/>
+                    </connections>
+                </button>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="oz9-46-XIS">
+                    <rect key="frame" x="244.5" y="470" width="112" height="60"/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="60" id="Qd9-wx-m0B"/>
+                        <constraint firstAttribute="width" constant="100" id="SZd-sS-zWK"/>
+                    </constraints>
+                    <fontDescription key="fontDescription" type="system" pointSize="35"/>
+                    <state key="normal" title="setVCs">
+                        <color key="titleColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </state>
+                    <variation key="default">
+                        <mask key="constraints">
+                            <exclude reference="SZd-sS-zWK"/>
+                        </mask>
+                    </variation>
+                    <connections>
+                        <action selector="setVCs:" destination="-1" eventType="touchUpInside" id="jYU-Kw-xXG"/>
                     </connections>
                 </button>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstAttribute="centerX" secondItem="kd3-pR-NsZ" secondAttribute="centerX" id="6y4-3b-5UO"/>
+                <constraint firstItem="oz9-46-XIS" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="BC0-DM-FZV"/>
+                <constraint firstItem="CUn-tJ-7Nx" firstAttribute="top" secondItem="kd3-pR-NsZ" secondAttribute="bottom" constant="40" id="Uzr-DM-31M"/>
                 <constraint firstAttribute="centerY" secondItem="kd3-pR-NsZ" secondAttribute="centerY" id="ajb-iU-HkX"/>
+                <constraint firstItem="CUn-tJ-7Nx" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="e9H-CM-Zxq"/>
+                <constraint firstItem="oz9-46-XIS" firstAttribute="top" secondItem="CUn-tJ-7Nx" secondAttribute="bottom" constant="40" id="f3X-x0-XNz"/>
+                <constraint firstItem="Wkn-4b-xkq" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="iPP-gV-xqG"/>
+                <constraint firstItem="kd3-pR-NsZ" firstAttribute="top" secondItem="Wkn-4b-xkq" secondAttribute="bottom" constant="40" id="k2o-Xs-hMj"/>
+                <constraint firstItem="CUn-tJ-7Nx" firstAttribute="centerX" secondItem="Wkn-4b-xkq" secondAttribute="centerX" id="riZ-jc-1Rx"/>
             </constraints>
+            <variation key="default">
+                <mask key="constraints">
+                    <exclude reference="riZ-jc-1Rx"/>
+                </mask>
+            </variation>
         </view>
     </objects>
 </document>

@@ -128,9 +128,25 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
  *  pop后移除当前界面截屏
  */
 - (UIViewController *)popViewControllerAnimated:(BOOL)animated {
-    UIViewController *popVc = [super popViewControllerAnimated:animated];
+    UIViewController *popped = [super popViewControllerAnimated:animated];
     [self.screenShotsDict removeObjectForKey:[self pointer:self.topViewController]];
-    return popVc;
+    return popped;
+}
+- (NSArray<UIViewController *> *)popToViewController:(UIViewController *)viewController animated:(BOOL)animated {
+    NSArray<UIViewController *> *popedVcs = [super popToViewController:viewController animated:animated];
+    for (UIViewController *vc in popedVcs) {
+        [self.screenShotsDict removeObjectForKey:[self pointer:vc]];
+    }
+    [self.screenShotsDict removeObjectForKey:[self pointer:self.topViewController]];
+    return popedVcs;
+}
+- (NSArray<UIViewController *> *)popToRootViewControllerAnimated:(BOOL)animated {
+    NSArray<UIViewController *> *popedVcs = [super popToRootViewControllerAnimated:animated];
+    for (UIViewController *vc in popedVcs) {
+        [self.screenShotsDict removeObjectForKey:[self pointer:vc]];
+    }
+    [self.screenShotsDict removeObjectForKey:[self pointer:self.topViewController]];
+    return popedVcs;
 }
 /**
  *  重置界面的截屏(新增了界面会缺失截屏)
