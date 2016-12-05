@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		A07BFE131DF551AA00F1A473 /* QQ头像.png in Resources */ = {isa = PBXBuildFile; fileRef = A07BFE121DF551AA00F1A473 /* QQ头像.png */; };
 		A09B22331AB0893B00E3E4A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A09B22321AB0893B00E3E4A1 /* main.m */; };
 		A09B223E1AB0893B00E3E4A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A09B223D1AB0893B00E3E4A1 /* Images.xcassets */; };
 		A09B22411AB0893B00E3E4A1 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = A09B223F1AB0893B00E3E4A1 /* LaunchScreen.xib */; };
@@ -29,6 +30,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		A07BFE121DF551AA00F1A473 /* QQ头像.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "QQ头像.png"; sourceTree = "<group>"; };
 		A09B222D1AB0893B00E3E4A1 /* ATNavigationControllerDemo.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ATNavigationControllerDemo.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A09B22311AB0893B00E3E4A1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A09B22321AB0893B00E3E4A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
@@ -125,6 +127,7 @@
 		A09B22561AB08A3500E3E4A1 /* Class */ = {
 			isa = PBXGroup;
 			children = (
+				A07BFE121DF551AA00F1A473 /* QQ头像.png */,
 				A09B22571AB08A3500E3E4A1 /* AppDelegate.h */,
 				A09B22581AB08A3500E3E4A1 /* AppDelegate.m */,
 				A09B22611AB08F3600E3E4A1 /* RandomColorViewController.h */,
@@ -226,6 +229,7 @@
 			files = (
 				A09B22651AB08F3600E3E4A1 /* RandomColorViewController.xib in Resources */,
 				A09B22411AB0893B00E3E4A1 /* LaunchScreen.xib in Resources */,
+				A07BFE131DF551AA00F1A473 /* QQ头像.png in Resources */,
 				A09B223E1AB0893B00E3E4A1 /* Images.xcassets in Resources */,
 				A09B22681AB091B700E3E4A1 /* Main.storyboard in Resources */,
 			);

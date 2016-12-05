@@ -7,6 +7,7 @@
 //
 
 #import "RandomColorViewController.h"
+#import "ATNavigationController.h"
 
 @interface RandomColorViewController ()
 
@@ -18,7 +19,12 @@
 - (void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     
-    self.navigationItem.title = [NSString stringWithFormat:@"我是第 %d 个控制器", (int)[self.navigationController.viewControllers indexOfObject:self]];
+    int index = (int)[self.navigationController.viewControllers indexOfObject:self];
+    self.navigationItem.title = [NSString stringWithFormat:@"我是第 %d 个控制器", index];
+    if (index == 4) {
+        self.disableDragBack = YES;
+        self.navigationItem.title = @"我不能拖拽返回";
+    }
 }
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -28,6 +34,14 @@
                                                 green:(arc4random()%256)/255.0f
                                                  blue:(arc4random()%256)/255.0f
                                                 alpha:1.0f];
+    
+    UIImageView *imageView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"QQ头像"]];
+    imageView.center = CGPointMake([UIScreen mainScreen].bounds.size.width/2, [UIScreen mainScreen].bounds.size.height/2);
+    [self.view insertSubview:imageView atIndex:0];
+    
+    UIVisualEffectView *effectView = [[UIVisualEffectView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+    effectView.effect = [UIBlurEffect effectWithStyle:UIBlurEffectStyleDark];
+    [self.view insertSubview:effectView atIndex:1];
 }
 
 #pragma mark - actions

@@ -7,8 +7,23 @@
 //
 
 #import "ATNavigationController.h"
+#import <objc/runtime.h>
 
-#define enableDrag (self.viewControllers.count > 1 && !self.disableDragBack)
+#define enableDrag (!self.disableDragBack && self.viewControllers.count > 1 && !self.topViewController.disableDragBack)
+
+const void *keyDisableDragBack = &keyDisableDragBack;
+@implementation UIViewController (ATNavigationControllerAdd)
+
+- (BOOL)disableDragBack {
+    return [objc_getAssociatedObject(self, keyDisableDragBack) boolValue];
+}
+
+- (void)setDisableDragBack:(BOOL)disableDragBack {
+    objc_setAssociatedObject(self, keyDisableDragBack, @(disableDragBack), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+
+@end
+
 
 typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     ATNavMovingStateStanby = 0,
@@ -95,7 +110,7 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
         view = self.tabBarController.view;
     }
     UIGraphicsBeginImageContextWithOptions(view.bounds.size, view.opaque, 0.0);
-    [view.layer renderInContext:UIGraphicsGetCurrentContext()];
+    [view drawViewHierarchyInRect:view.bounds afterScreenUpdates:YES];
     UIImage * img = UIGraphicsGetImageFromCurrentImageContext();
     UIGraphicsEndImageContext();
     return img;

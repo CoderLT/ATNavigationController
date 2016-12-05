@@ -15,9 +15,16 @@
 #define ATAnimationDuration     0.5f
 #define ATMinX                  (0.3f * ATNavViewW)
 
-@interface ATNavigationController : UINavigationController
+@interface UIViewController (ATNavigationControllerAdd)
 /**
  *  If yes, disable the drag back, default no.
+ */
+@property (nonatomic, assign) BOOL disableDragBack;
+@end
+
+@interface ATNavigationController : UINavigationController
+/**
+ *  If yes, disable the drag back, default no. global
  */
 @property (nonatomic, assign) BOOL disableDragBack;
 
