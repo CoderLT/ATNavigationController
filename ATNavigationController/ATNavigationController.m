@@ -199,7 +199,8 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     // 移动键盘
     if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)) {
         [[[UIApplication sharedApplication] windows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]) {
+            if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]
+                || [obj isKindOfClass:NSClassFromString(@"UITextEffectsWindow")]) {
                 [(UIWindow *)obj setTransform:CGAffineTransformMakeTranslation(x, 0)];
             }
         }];
@@ -289,7 +290,8 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
                              // 移动键盘
                              if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)) {
                                  [[[UIApplication sharedApplication] windows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                     if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]) {
+                                     if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]
+                                         || [obj isKindOfClass:NSClassFromString(@"UITextEffectsWindow")]) {
                                          [(UIWindow *)obj setTransform:CGAffineTransformIdentity];
                                      }
                                  }];
