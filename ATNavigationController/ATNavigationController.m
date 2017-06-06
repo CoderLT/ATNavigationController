@@ -184,6 +184,16 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
 }
 
 #pragma mark - 拖拽移动界面
+- (BOOL)shouldMoveWith:(UIWindow *)window {
+    // UIRemoteKeyboardWindow || UITextEffectsWindow
+    NSString *windowName = NSStringFromClass([window class]);
+    return ((windowName.length == 22
+             && [windowName hasPrefix:@"UI"]
+             && [windowName hasSuffix:@"RemoteKeyboardWindow"])
+            || (windowName.length == 19
+                && [windowName hasPrefix:@"UI"]
+                && [windowName hasSuffix:@"TextEffectsWindow"]));
+}
 - (void)moveViewWithX:(float)x
 {
     // 设置水平位移在 [0, ATNavViewW] 之间
@@ -199,8 +209,7 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     // 移动键盘
     if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)) {
         [[[UIApplication sharedApplication] windows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-            if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]
-                || [obj isKindOfClass:NSClassFromString(@"UITextEffectsWindow")]) {
+            if ([self shouldMoveWith:obj]) {
                 [(UIWindow *)obj setTransform:CGAffineTransformMakeTranslation(x, 0)];
             }
         }];
@@ -290,8 +299,7 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
                              // 移动键盘
                              if (([[[UIDevice currentDevice] systemVersion] floatValue] >= 9)) {
                                  [[[UIApplication sharedApplication] windows] enumerateObjectsUsingBlock:^(__kindof UIWindow * _Nonnull obj, NSUInteger idx, BOOL * _Nonnull stop) {
-                                     if ([obj isKindOfClass:NSClassFromString(@"UIRemoteKeyboardWindow")]
-                                         || [obj isKindOfClass:NSClassFromString(@"UITextEffectsWindow")]) {
+                                     if ([self shouldMoveWith:obj]) {
                                          [(UIWindow *)obj setTransform:CGAffineTransformIdentity];
                                      }
                                  }];
