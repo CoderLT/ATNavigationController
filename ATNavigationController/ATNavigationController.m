@@ -329,6 +329,12 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
  */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(nonnull UIGestureRecognizer *)otherGestureRecognizer {
     UIPanGestureRecognizer *ges = (UIPanGestureRecognizer *)otherGestureRecognizer;
+    // 手势是 UIScrollViewPan 且 可以左右滑动, 已经滑到最左端
+    if ([ges isKindOfClass:NSClassFromString(@"UIScrollViewPanGestureRecognizer")]) {
+        return [ges.view isKindOfClass:[UIScrollView class]]
+        && (((UIScrollView *)ges.view).contentSize.width > ges.view.bounds.size.width * 1.5)
+        && (((UIScrollView *)ges.view).contentOffset.x == 0);
+    }
     // 手势不是 UIPanGestureRecognizer
     if (![ges isKindOfClass:[UIPanGestureRecognizer class]]) {
         return NO;
@@ -349,5 +355,4 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     // 应该是左滑了
     return YES;
 }
-
 @end
