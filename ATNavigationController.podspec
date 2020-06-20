@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.license      			= "MIT"
   s.author       			= { "AT" => "290907999@qq.com" }
   s.social_media_url  = "http://weibo.com/aoranxmu"
-  s.source       			= { :git => "https://github.com/CoderLT/ATNavigationController.git", :tag => "0.0.18" }
+  s.source       			= { :git => "https://github.com/CoderLT/ATNavigationController.git", :tag => "0.0.19" }
   s.source_files 			= "ATNavigationController"
   s.requires_arc 			= true
   s.platform     			= :ios, '6.0'
