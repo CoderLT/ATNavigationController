@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name              = "ATNavigationController"
-  s.version      			= "0.0.18"
+  s.version      			= "0.0.20"
   s.summary      			= "drag back to preViewController"
   s.homepage     			= "https://github.com/CoderLT/ATNavigationController"
   s.license      			= "MIT"
