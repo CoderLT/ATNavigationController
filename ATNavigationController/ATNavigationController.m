@@ -24,6 +24,15 @@ const void *keyDisableDragBack = &keyDisableDragBack;
 
 @end
 
+@implementation UIView (ATNavigationControllerAdd)
+- (BOOL)disableDragBack {
+    return [objc_getAssociatedObject(self, keyDisableDragBack) boolValue];
+}
+- (void)setDisableDragBack:(BOOL)disableDragBack {
+    objc_setAssociatedObject(self, keyDisableDragBack, @(disableDragBack), OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
+@end
+
 
 typedef NS_ENUM(int, ATNavMovingStateEnumes) {
     ATNavMovingStateStanby = 0,
@@ -335,6 +344,10 @@ typedef NS_ENUM(int, ATNavMovingStateEnumes) {
  */
 - (BOOL)gestureRecognizer:(UIGestureRecognizer *)gestureRecognizer shouldRecognizeSimultaneouslyWithGestureRecognizer:(nonnull UIGestureRecognizer *)otherGestureRecognizer {
     UIPanGestureRecognizer *ges = (UIPanGestureRecognizer *)otherGestureRecognizer;
+    // 手动设置了不允许左滑
+    if (ges.view.disableDragBack) {
+        return NO;
+    }
     // 手势是 UIScrollViewPan 且 可以左右滑动, 已经滑到最左端
     if ([ges isKindOfClass:NSClassFromString(@"UIScrollViewPanGestureRecognizer")]) {
         return [ges.view isKindOfClass:[UIScrollView class]]

@@ -22,6 +22,13 @@
 @property (nonatomic, assign) BOOL disableDragBack;
 @end
 
+@interface UIView (ATNavigationControllerAdd)
+/**
+ *  If yes, disable the drag back, default no.
+ */
+@property (nonatomic, assign) BOOL disableDragBack;
+@end
+
 @interface ATNavigationController : UINavigationController
 /**
  *  If yes, disable the drag back, default no. global
